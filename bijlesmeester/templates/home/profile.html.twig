@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container py-5">
+
+        <div class="row g-4">
+
+            <!-- PROFIEL -->
+            <div class="col-md-4">
+                <div class="card shadow-sm p-4 text-center">
+
+                    <img src="https://via.placeholder.com/100"
+                         class="rounded-circle mb-3 mx-auto"
+                         width="100"
+                         height="100"
+                         style="object-fit: cover;">
+
+                    <h5 class="fw-bold mb-0">
+                        {{ app.user.userIdentifier }}
+                    </h5>
+
+                    <p class="text-muted small">
+                        Leerling
+                    </p>
+
+                    <hr>
+
+                    <div class="text-start small">
+                        <p class="mb-1"><strong>Email:</strong><br> {{ app.user.userIdentifier }}</p>
+                        <p class="mb-1"><strong>Status:</strong><br> Actief</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- OVERVIEW -->
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+
+                    <h5 class="fw-bold mb-3">Mijn overzicht</h5>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h6 class="fw-bold">Aankomende lessen</h6>
+                                <p class="text-muted small mb-1">Geen lessen gepland</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h6 class="fw-bold">Mededelingen</h6>
+                                <p class="text-muted small mb-1">Geen nieuwe berichten</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h6 class="fw-bold">Huiswerk</h6>
+                                <p class="text-muted small mb-1">Alles bijgewerkt 🎉</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h6 class="fw-bold">Producten</h6>
+                                <p class="text-muted small mb-1">Bekijk de shop</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ACTIES -->
+                <div class="card shadow-sm p-4 mt-4">
+                    <h5 class="fw-bold mb-3">Acties</h5>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#" class="btn btn-outline-primary">
+                            Les wijzigen
+                        </a>
+                        <a href="#" class="btn btn-outline-danger">
+                            Les annuleren
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary">
+                            Kalender bekijken
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

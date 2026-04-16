@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\User;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
+class UserFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+            ])
+
+            ->add('roles', ChoiceType::class, [
+                'label' => 'Rollen',
+                'choices' => [
+                    'Beheerder' => 'ROLE_ADMIN',
+                    'Docent' => 'ROLE_DOCENT',
+                    'Gebruiker' => 'ROLE_USER',
+                ],
+                'multiple' => true,
+                'expanded' => true,
+            ])
+
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'mapped' => false, // 🔥 belangrijk: bestaat niet in entity
+                'required' => false,
+                'first_options'  => ['label' => 'Nieuw wachtwoord'],
+                'second_options' => ['label' => 'Herhaal wachtwoord'],
+            ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
+    }
+}

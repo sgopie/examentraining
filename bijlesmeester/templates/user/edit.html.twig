@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container py-5">
+
+        <div class="mb-3">
+            <a href="{{ path('app_user') }}" class="btn btn-outline-secondary btn-sm">
+                ← Terug
+            </a>
+        </div>
+
+        <div class="card shadow-sm p-4 mx-auto" style="max-width: 650px;">
+
+            <h4 class="fw-bold mb-4">User bewerken</h4>
+
+            {{ form_start(editForm) }}
+
+            <!-- EMAIL -->
+            <div class="mb-3">
+                {{ form_label(editForm.email) }}
+                {{ form_widget(editForm.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(editForm.email) }}
+            </div>
+
+            <!-- ROLLEN -->
+            <div class="mb-3">
+                <label class="form-label">Rollen</label>
+                <div class="d-flex flex-column gap-1">
+                    {{ form_widget(editForm.roles) }}
+                </div>
+                {{ form_errors(editForm.roles) }}
+            </div>
+
+            <hr>
+
+            <!-- PASSWORD -->
+            <h6 class="fw-bold mb-3">Wachtwoord wijzigen</h6>
+
+            <div class="mb-3">
+                {{ form_label(editForm.plainPassword.first) }}
+                {{ form_widget(editForm.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Nieuw wachtwoord'}}) }}
+                {{ form_errors(editForm.plainPassword.first) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(editForm.plainPassword.second) }}
+                {{ form_widget(editForm.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Herhaal wachtwoord'}}) }}
+                {{ form_errors(editForm.plainPassword.second) }}
+            </div>
+
+            <small class="text-muted d-block mb-3">
+                Laat leeg als je het wachtwoord niet wil aanpassen.
+            </small>
+
+            <!-- BUTTONS -->
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success">
+                    Opslaan
+                </button>
+
+                <a href="{{ path('app_user') }}" class="btn btn-outline-secondary">
+                    Annuleren
+                </a>
+            </div>
+
+            {{ form_end(editForm) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

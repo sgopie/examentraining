@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container py-5">
+
+        <div class="mb-4">
+            <a href="{{ path('app_user') }}" class="btn btn-outline-secondary btn-sm">
+                ← Terug
+            </a>
+        </div>
+
+        <div class="card shadow-sm p-4">
+
+            <div class="d-flex align-items-center mb-4">
+                <img src="https://via.placeholder.com/80"
+                     class="rounded-circle me-3"
+                     width="80"
+                     height="80"
+                     style="object-fit: cover;">
+
+                <div>
+                    <h4 class="mb-0 fw-bold">{{ user.email }}</h4>
+                    <span class="text-muted small">Gebruiker details</span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <p><strong>Email:</strong><br> {{ user.email }}</p>
+                    <p><strong>ID:</strong><br> {{ user.id }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Rollen:</strong><br>
+                        {% for role in user.roles %}
+                            <span class="badge bg-secondary me-1">{{ role }}</span>
+                        {% endfor %}
+                    </p>
+
+                    <p><strong>Status:</strong><br>
+                        <span class="badge bg-success">Actief</span>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACTIES -->
+        <div class="card shadow-sm p-4 mt-4">
+            <h5 class="fw-bold mb-3">Acties</h5>
+
+            <div class="d-flex gap-2">
+                <a href="#" class="btn btn-outline-warning">
+                    Bewerken
+                </a>
+                <a href="#" class="btn btn-outline-danger">
+                    Verwijderen
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
