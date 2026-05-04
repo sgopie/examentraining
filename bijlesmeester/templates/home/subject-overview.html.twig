@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container py-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">Subject Management</h2>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="card shadow-sm p-3 mb-4">
+            <form method="get" class="row g-3">
+
+                <!-- SEARCH -->
+                <div class="col-md-6">
+                    <input type="text"
+                           name="search"
+                           value="{{ app.request.get('search') }}"
+                           class="form-control"
+                           placeholder="Zoek op naam...">
+                </div>
+
+            </form>
+        </div>
+
+        <!-- TABLE -->
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+
+                    <thead class="table-light">
+                    <tr>
+                        <th>Subject</th>
+                        <th>Niveau</th>
+                        <th class="text-end">Acties</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for subject in subjects %}
+                        <tr>
+                            <td>{{ subject.name }}</td>
+                            <td>{{ subject.niveau }}</td>
+
+                            <td class="text-end">
+                                <!-- VIEW -->
+                                {#                                <a href="{{ path('app_subject_read', {id: subject.id}) }}" #}
+                                {#                                   class="btn btn-sm btn-outline-primary"> #}
+                                {#                                    Bekijken #}
+                                {#                                </a> #}
+
+                                <!-- EDIT -->
+                                {#                                <a href="{{ path('app_subject_edit', {id: subject.id}) }}" #}
+                                {#                                   class="btn btn-sm btn-outline-warning"> #}
+                                {#                                    Bewerken #}
+                                {#                                </a> #}
+
+                                <!-- DELETE BUTTON -->
+                                {#                                <button class="btn btn-sm btn-outline-danger" #}
+                                {#                                        data-bs-toggle="modal" #}
+                                {#                                        data-bs-target="#deleteModal{{ subject.id }}"> #}
+                                {#                                    Verwijderen #}
+                                {#                                </button> #}
+
+                                <a href="{{ path('app_add_subject', {id:subject.id}) }}"
+                                   class="btn btn-sm btn-outline-warning">
+                                    voeg aan student toe
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- DELETE MODAL -->
+                        <div class="modal fade" id="deleteModal{{ subject.id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Vak verwijderen</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Weet je zeker dat je
+                                        <strong>{{ subject.name }}</strong>
+                                        wilt verwijderen?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button"
+                                                class="btn btn-secondary"
+                                                data-bs-dismiss="modal">
+                                            Annuleren
+                                        </button>
+
+                                        {#                                        <form method="post" #}
+                                        {#                                              action="{{ path('app_subject_delete', {id: subject.id}) }}"> #}
+                                        {#                                            <input type="hidden" #}
+                                        {#                                                   name="_token" #}
+                                        {#                                                   value="{{ csrf_token('delete_subject_' ~ subject.id) }}"> #}
+
+                                        {#                                            <button class="btn btn-danger"> #}
+                                        {#                                                Ja, verwijderen #}
+                                        {#                                            </button> #}
+                                        {#                                        </form> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                Geen vakken gevonden
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
