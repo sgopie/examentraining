@@ -20,6 +20,10 @@
                            class="form-control"
                            placeholder="Zoek op naam...">
                 </div>
+                <a href="{{ path('app_add_subject') }}"
+                   class="btn btn-sm btn-outline-warning">
+                    voeg aan student toe
+                </a>
 
             </form>
         </div>
@@ -63,10 +67,6 @@
                                 {#                                    Verwijderen #}
                                 {#                                </button> #}
 
-                                <a href="{{ path('app_add_subject', {id:subject.id}) }}"
-                                   class="btn btn-sm btn-outline-warning">
-                                    voeg aan student toe
-                                </a>
                             </td>
                         </tr>
 

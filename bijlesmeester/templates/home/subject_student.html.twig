@@ -1,3 +1,51 @@
 {% extends 'base.html.twig' %}
-{% block body %}
-{% endblock %}
+
+    {% block body %}
+
+        <div class="container py-5">
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                    <div class="card shadow-sm border-0 rounded-3">
+
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Koppel student aan vak</h5>
+                        </div>
+
+                        <div class="card-body p-4">
+
+                            {{ form_start(form) }}
+
+                            <div class="mb-3">
+                                {{ form_label(form.user, 'Student', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.user, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_errors(form.user) }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form_label(form.subject, 'Vak', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.subject, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_errors(form.subject) }}
+                            </div>
+
+                            <div class="d-grid">
+                                {{ form_widget(form.submit, {
+                                    'attr': {
+                                        'class': 'btn btn-primary btn-lg'
+                                    },
+                                    'label': 'Toevoegen'
+                                }) }}
+                            </div>
+
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    {% endblock %}
